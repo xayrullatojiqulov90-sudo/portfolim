@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Xayrulla Tojiqulov — Frontend dasturchi</title>
+<script>document.documentElement.className='js'</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EEF2F7;--ink:#14213D;--mute:#4A5878;--line:#C9D3E3;--card:#fff;--acc:#2B50FF;--acc-ink:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1830;--ink:#E8EEFB;--mute:#9AA8C7;--line:#2A3A63;--card:#16224A;--acc:#7C95FF;--acc-ink:#0F1830}}
+:root[data-theme="dark"]{--bg:#0F1830;--ink:#E8EEFB;--mute:#9AA8C7;--line:#2A3A63;--card:#16224A;--acc:#7C95FF;--acc-ink:#0F1830}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "IBM Plex Sans",system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.05;margin:0}
+.wrap{max-width:920px;margin:0 auto;padding:0 24px;position:relative}
+#bar{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);height:4px;background:var(--acc);transform:scaleX(0);transform-origin:0 50%;z-index:10}
+.hero{position:relative;overflow:hidden;padding:110px 0 90px;--mx:70%;--my:30%}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(520px circle at var(--mx) var(--my),color-mix(in srgb,var(--acc) 20%,transparent),transparent 70%)}
+#net{position:absolute;inset:0;width:100%;height:100%}
+h1{font-size:clamp(3rem,11vw,7rem);font-weight:800;letter-spacing:-.03em}
+.ln{display:block;overflow:hidden;padding-bottom:.14em;margin-bottom:-.14em}
+.ch{display:inline-block}
+.js .ch{transform:translateY(115%);animation:rise .9s cubic-bezier(.2,.8,.2,1) var(--d) forwards}
+@keyframes rise{to{transform:none}}
+.role{font-size:clamp(1.2rem,3.2vw,1.8rem);color:var(--mute);margin:24px 0 32px;min-height:2.6em;max-width:28ch}
+.caret{display:inline-block;width:3px;height:1.1em;background:var(--acc);vertical-align:-.15em;margin-left:3px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:13px 24px;border-radius:999px;text-decoration:none;font-weight:500;border:2px solid var(--acc);color:var(--ink);transition:transform .2s,background .2s,color .2s}
+.btn.main{background:var(--acc);color:var(--acc-ink)}
+.btn:hover{transform:translateY(-3px) scale(1.04)}
+.btn:not(.main):hover{background:var(--acc);color:var(--acc-ink)}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+section{padding:64px 0;border-top:1px solid var(--line)}
+h2{font-size:2.2rem;margin-bottom:32px}
+h2::after{content:"";display:block;height:4px;width:0;background:var(--acc);margin-top:12px;transition:width .8s .2s ease-out}
+.in h2::after,h2.in::after{width:64px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.card{position:relative;overflow:hidden;background:var(--card);border:1px solid var(--line);padding:26px;border-radius:6px;transform:perspective(700px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .15s ease-out,border-color .2s}
+.card:hover{border-color:var(--acc)}
+.card::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),var(--acc),transparent 60%);opacity:0;transition:opacity .25s;pointer-events:none}
+.card:hover::after{opacity:.13}
+.card h3{font-size:1.4rem;margin-bottom:8px}
+.card p{margin:0 0 14px;color:var(--mute)}
+.card small{color:var(--acc);font-weight:500}
+.marquee{overflow:hidden;padding:36px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.track{display:flex;width:max-content;gap:44px;animation:slide 26s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.track span{font:800 clamp(2rem,6vw,3.6rem)/1 "Bricolage Grotesque",system-ui,sans-serif;color:transparent;-webkit-text-stroke:1.5px var(--ink);display:flex;align-items:center;gap:44px;white-space:nowrap}
+.track span::after{content:"";width:14px;height:14px;background:var(--acc);animation:spin 4s linear infinite}
+@keyframes slide{to{transform:translateX(-50%)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px}
+.skills h3{font-size:1.15rem;margin-bottom:6px}
+.skills p{margin:0;color:var(--mute)}
+footer{padding:64px 0 80px}
+footer p{margin:0 0 8px;color:var(--mute)}
+.mail{font:800 clamp(1.4rem,5vw,2.8rem)/1.2 "Bricolage Grotesque",system-ui,sans-serif;color:var(--ink);text-decoration:none;background:linear-gradient(var(--acc),var(--acc)) 0 100%/0 4px no-repeat;transition:background-size .4s;word-break:break-all}
+.mail:hover,.mail:focus-visible{background-size:100% 4px;outline:none}
+.links{margin-top:20px;display:flex;gap:24px}
+.links a{color:var(--ink);font-weight:500}
+.js .reveal{opacity:0;translate:0 36px;transition:opacity .7s ease-out,translate .7s ease-out}
+.js .reveal.in{opacity:1;translate:0 0}
+@media (prefers-reduced-motion:reduce){
+.js .ch{transform:none;animation:none}.js .reveal{opacity:1;translate:none;transition:none}
+.track,.track span::after,.caret{animation:none}#net{display:none}html{scroll-behavior:auto}.card{transform:none}}
+.btn{transition:transform .2s,background .2s,color .2s,translate .25s}
+#curtain{position:fixed;inset:0;z-index:40;background:var(--acc);color:var(--acc-ink);display:none;place-items:center;font:800 clamp(4rem,18vw,10rem)/1 "Bricolage Grotesque",system-ui,sans-serif;pointer-events:none}
+.js #curtain{display:grid;animation:curtain 1s .7s cubic-bezier(.77,0,.18,1) forwards}
+@keyframes curtain{to{transform:translateY(-100%);visibility:hidden}}
+.theme{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);right:16px;z-index:11;width:44px;height:44px;border-radius:50%;border:2px solid var(--acc);background:var(--bg);color:var(--ink);font-size:18px;cursor:pointer;transition:transform .3s}
+.theme:hover{transform:rotate(180deg)}
+.theme:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.cur .cur-dot,.cur .cur-ring{display:block}
+.cur,.cur *{cursor:none!important}
+.cur-dot,.cur-ring{display:none;position:fixed;left:0;top:0;z-index:50;pointer-events:none;border-radius:50%}
+.cur-dot{width:8px;height:8px;background:var(--acc)}
+.cur-ring{width:38px;height:38px;border:1.5px solid var(--acc);transition:width .2s,height .2s,background .2s}
+.cur-ring.big{width:72px;height:72px;background:color-mix(in srgb,var(--acc) 16%,transparent)}
+.code{background:#101A38;color:#DCE6FF;border-radius:10px;overflow:hidden;box-shadow:0 24px 60px -24px color-mix(in srgb,var(--acc) 60%,transparent)}
+.dots{display:flex;align-items:center;gap:7px;padding:12px 16px;background:#0B1229}
+.dots i{width:12px;height:12px;border-radius:50%;background:#FF6B8B}
+.dots i:nth-child(2){background:#FFC857}.dots i:nth-child(3){background:#5BE3A5}
+.dots b{margin-left:10px;font:500 13px ui-monospace,Menlo,monospace;color:#7A8BB5}
+.code pre{margin:0;padding:20px;min-height:16.5em;overflow-x:auto;font:15px/1.7 ui-monospace,Menlo,Consolas,monospace}
+.code .p{color:#8FA6FF}.code .s{color:#7EE3B2}.code .k{color:#FF9CC8}.code .c{color:#7A8BB5}
+@media (prefers-reduced-motion:reduce){#curtain{display:none!important}.theme:hover{transform:none}}
+.icons{display:flex;gap:18px;flex-wrap:wrap;margin-top:8px}
+.ico{display:grid;place-items:center;width:68px;height:68px;border-radius:50%;border:2px solid var(--acc);color:var(--ink);transition:transform .25s,background .25s,color .25s,box-shadow .25s,translate .25s}
+.ico svg{width:28px;height:28px}
+.ico:hover,.ico:focus-visible{background:var(--acc);color:var(--acc-ink);transform:translateY(-6px) rotate(-8deg);box-shadow:0 14px 28px -10px var(--acc);outline:none}
+.ico:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.ico:hover,.ico:focus-visible{transform:none}}
+a.card{display:block;color:inherit;text-decoration:none}
+a.card:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.card h3{padding-right:34px}
+.card .go{position:absolute;top:24px;right:24px;width:24px;height:24px;color:var(--acc);transition:translate .25s}
+.card:hover .go,.card:focus-visible .go{translate:4px -4px}
+</style>
+</head>
+<body>
+<div id="curtain" aria-hidden="true">XT</div>
+<button class="theme" id="theme" aria-label="Yorug' va qorong'i rejimni almashtirish"></button>
+<div id="bar"></div>
+<header class="hero" id="hero">
+  <canvas id="net" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <h1><span class="ln">Xayrulla</span><span class="ln">Tojiqulov</span></h1>
+    <p class="role"><span id="typed">Frontend dasturchi</span><span class="caret"></span></p>
+    <div class="btns">
+      <a class="btn main" href="#loyihalar">Loyihalarni ko'rish</a>
+      <a class="btn" href="#aloqa">Bog'lanish</a>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true"><div class="track" id="track">
+  <span>HTML</span><span>CSS</span><span>Tailwind CSS</span><span>JavaScript</span><span>Python</span><span>C++</span><span>Git</span>
+</div></div>
+
+<main class="wrap">
+<section id="loyihalar">
+  <h2 class="reveal">Loyihalar</h2>
+  <div class="grid">
+    <a class="card reveal" href="https://tizimx12-eguy.vercel.app/" target="_blank" rel="noopener noreferrer"><svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg><h3>SmartCart</h3><p>Aqlli internet-do'kon: byudjetingizga qarab mahsulot tanlab beradigan AI maslahatchi, solishtirish, sevimlilar va savatcha.</p><small>HTML, CSS, JavaScript</small></a>
+    <a class="card reveal" href="https://tmauz-ytx5.vercel.app/bolimlar/index.html" target="_blank" rel="noopener noreferrer"><svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg><h3>TMA</h3><p>Toshkent Davlat Tibbiyot Universiteti sayti: fakultetlar, qabul shartlari va ariza yuborish shakli.</p><small>Veb-sayt</small></a>
+    <a class="card reveal" href="https://tizimx12.vercel.app/" target="_blank" rel="noopener noreferrer"><svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg><h3>Tizimix</h3><p>Xodimlarni boshqarish paneli: kirish, davomat, nomzodlar, taklifnomalar va hisobotlar bitta joyda.</p><small>Admin panel</small></a>
+    <a class="card reveal" href="https://wasyt-max.vercel.app/" target="_blank" rel="noopener noreferrer"><svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg><h3>Wasyt Max</h3><p>Wasyt Max veb-loyihasi.</p><small>Veb-sayt</small></a>
+    <a class="card reveal" href="https://shifomed12-scx2.vercel.app" target="_blank" rel="noopener noreferrer"><svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg><h3>ShifoMed12</h3><p>Tibbiyot yo'nalishidagi veb-loyiha.</p><small>HTML</small></a>
+    <a class="card reveal" href="https://partfolim.vercel.app" target="_blank" rel="noopener noreferrer"><svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg><h3>Partfolim</h3><p>Portfolio veb-sayti.</p><small>HTML</small></a>
+    <a class="card reveal" href="https://bayroqlar-ten.vercel.app" target="_blank" rel="noopener noreferrer"><svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg><h3>Where in the world?</h3><p>Dunyo mamlakatlari va bayroqlari haqidagi veb-ilova.</p><small>HTML</small></a>
+    <a class="card reveal" href="https://kitob-dokoni-fcza.vercel.app" target="_blank" rel="noopener noreferrer"><svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg><h3>Kitob do'koni</h3><p>Kitoblar uchun onlayn do'kon.</p><small>HTML</small></a>
+    <a class="card reveal" href="https://tanc-300.vercel.app" target="_blank" rel="noopener noreferrer"><svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg><h3>TANC300</h3><p>TANC300 loyihasi uchun veb-sayt.</p><small>HTML</small></a>
+    <a class="card reveal" href="https://street-77.vercel.app" target="_blank" rel="noopener noreferrer"><svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg><h3>STREET-77</h3><p>STREET-77 loyihasi uchun veb-sayt.</p><small>HTML</small></a>
+    <a class="card reveal" href="https://pixer-uz-eta.vercel.app" target="_blank" rel="noopener noreferrer"><svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg><h3>Pixer</h3><p>Pixer loyihasi uchun veb-sayt.</p><small>HTML</small></a>
+    <a class="card reveal" href="https://raw.githack.com/xayrullatojiqulov90-sudo/coferestaranss/main/index.html" target="_blank" rel="noopener noreferrer"><svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg><h3>Coferestaranss</h3><p>Kafe va restoran loyihasi.</p><small>HTML</small></a>
+    <a class="card reveal" href="https://raw.githack.com/xayrullatojiqulov90-sudo/academicnashr/main/index.html" target="_blank" rel="noopener noreferrer"><svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg><h3>Academic Nashr</h3><p>Akademik nashr loyihasi uchun veb-sayt.</p><small>HTML</small></a>
+  </div>
+</section>
+
+<section id="kokinmalar">
+  <h2 class="reveal">Ko'nikmalar</h2>
+  <div class="skills">
+    <div class="reveal"><h3>Frontend</h3><p>HTML, CSS, Tailwind CSS, JavaScript</p></div>
+    <div class="reveal"><h3>Boshqa tillar</h3><p>Python, C++</p></div>
+    <div class="reveal"><h3>Asboblar</h3><p>Git, GitHub</p></div>
+  </div>
+</section>
+<section id="haqimda">
+  <h2 class="reveal">Men haqimda</h2>
+  <div class="code reveal" id="code">
+    <div class="dots"><i></i><i></i><i></i><b>xayrulla.js</b></div>
+    <pre><code id="codetext"></code></pre>
+  </div>
+</section>
+</main>
+
+<footer id="aloqa" class="wrap">
+  <h2 class="reveal">Birgalikda ishlaymiz</h2>
+  <p class="reveal">Loyiha bo'lsa, yozing:</p>
+  <div class="icons reveal">
+    <a class="ico" href="mailto:xayrullatojiqulov90@gmail.com" aria-label="Email" title="Email">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+    </a>
+    <a class="ico" href="https://github.com/xayrullatojiqulov90-sudo" aria-label="GitHub" title="GitHub">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+    </a>
+    <a class="ico" href="https://t.me/xaurullotojiqulov" aria-label="Telegram" title="Telegram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7Z"/></svg>
+    </a>
+  </div>
+</footer>
+
+<script>
+(function(){
+var d=document,rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+// 1. Ism harflari birma-bir chiqadi
+d.querySelectorAll('.ln').forEach(function(l,li){var t=l.textContent;l.textContent='';l.setAttribute('aria-label',t);
+  t.split('').forEach(function(c,i){var s=d.createElement('span');s.className='ch';s.setAttribute('aria-hidden','true');s.textContent=c;s.style.setProperty('--d',(1.1+li*.35+i*.05)+'s');l.appendChild(s)})});
+// 2. Yozilib turuvchi matn
+var words=['Frontend dasturchi','Tez va qulay sahifalar yarataman','Kodni jonlantiraman'],w=0,c=0,del=false,el=d.getElementById('typed');
+function tick(){var f=words[w];c+=del?-1:1;el.textContent=f.slice(0,c);var t=del?35:70;
+  if(!del&&c===f.length){del=true;t=1500}else if(del&&c===0){del=false;w=(w+1)%words.length;t=300}setTimeout(tick,t)}
+if(!rm){el.textContent='';setTimeout(tick,2000)}
+// 3. Zarrachalar tarmog'i (sichqoncha bilan o'ynaydi)
+var hero=d.getElementById('hero'),cv=d.getElementById('net'),cx=cv.getContext('2d'),P=[],mx=-999,my=-999,W=0,H=0,vis=true;
+function size(){var r=hero.getBoundingClientRect(),k=Math.min(devicePixelRatio||1,2);W=r.width;H=r.height;cv.width=W*k;cv.height=H*k;cx.setTransform(k,0,0,k,0,0);
+  P=[];for(var i=0,n=Math.round(W*H/15000);i<n;i++)P.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.45,vy:(Math.random()-.5)*.45})}
+function draw(){cx.clearRect(0,0,W,H);var col=getComputedStyle(d.documentElement).getPropertyValue('--acc').trim();cx.fillStyle=col;cx.strokeStyle=col;
+  for(var i=0;i<P.length;i++){var p=P[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
+    var dx=p.x-mx,dy=p.y-my,m=Math.hypot(dx,dy);if(m<130){p.x+=dx/m*1.5;p.y+=dy/m*1.5}
+    cx.globalAlpha=.75;cx.beginPath();cx.arc(p.x,p.y,2.2,0,6.283);cx.fill();
+    for(var j=i+1;j<P.length;j++){var q=P[j],l=Math.hypot(p.x-q.x,p.y-q.y);if(l<115){cx.globalAlpha=(1-l/115)*.4;cx.beginPath();cx.moveTo(p.x,p.y);cx.lineTo(q.x,q.y);cx.stroke()}}}}
+function loop(){if(vis)draw();requestAnimationFrame(loop)}
+if(!rm){size();loop();addEventListener('resize',size);
+  new IntersectionObserver(function(e){vis=e[0].isIntersecting}).observe(hero);
+  hero.addEventListener('pointermove',function(e){var r=hero.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;hero.style.setProperty('--mx',mx+'px');hero.style.setProperty('--my',my+'px')});
+  hero.addEventListener('pointerleave',function(){mx=my=-999})}
+// 4. Skroll bilan paydo bo'lish
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
+d.querySelectorAll('.reveal').forEach(function(n){var sib=Array.prototype.indexOf.call(n.parentNode.children,n);n.style.transitionDelay=(sib%3)*.12+'s';io.observe(n)});
+// 5. Kartalar 3D egiladi
+if(!rm&&matchMedia('(hover:hover)').matches)d.querySelectorAll('.card').forEach(function(k){
+  k.addEventListener('pointermove',function(e){var r=k.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+    k.style.setProperty('--rx',((.5-y)*10)+'deg');k.style.setProperty('--ry',((x-.5)*12)+'deg');k.style.setProperty('--gx',x*100+'%');k.style.setProperty('--gy',y*100+'%')});
+  k.addEventListener('pointerleave',function(){k.style.setProperty('--rx','0deg');k.style.setProperty('--ry','0deg')})});
+// 6. Yuguruvchi qator va skroll chizig'i
+var tr=d.getElementById('track');tr.innerHTML+=tr.innerHTML;
+var bar=d.getElementById('bar');
+addEventListener('scroll',function(){var h=d.documentElement.scrollHeight-innerHeight;bar.style.transform='scaleX('+(h>0?scrollY/h:0)+')'},{passive:true});
+// 8. Rang rejimi tugmasi
+var tg=d.getElementById('theme'),root=d.documentElement;
+function curTheme(){return root.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}
+tg.textContent=curTheme()==='dark'?'☀':'☾';
+tg.addEventListener('click',function(){var n=curTheme()==='dark'?'light':'dark';root.setAttribute('data-theme',n);tg.textContent=n==='dark'?'☀':'☾'});
+// 9. Harflar ustiga borganda aralashib qayta yig'iladi
+var set='abcdefghijklmnopqrstuvwxyz0123456789<>/{}';
+if(!rm)d.querySelectorAll('.ch').forEach(function(s){var o=s.textContent,busy=false;
+  s.addEventListener('pointerenter',function(){if(busy)return;busy=true;s.style.minWidth=s.offsetWidth+'px';var n=0;
+    var t=setInterval(function(){s.textContent=n<6?set[Math.floor(Math.random()*set.length)]:o;s.style.color=n<6?'var(--acc)':'';
+      if(++n>6){clearInterval(t);busy=false;s.style.minWidth=''}},45)})});
+// 10. Maxsus kursor va magnitli tugmalar
+if(!rm&&matchMedia('(hover:hover) and (pointer:fine)').matches){
+  root.classList.add('cur');
+  var dot=d.createElement('div'),ring=d.createElement('div'),kx=-100,ky=-100,rx=-100,ry=-100;
+  dot.className='cur-dot';ring.className='cur-ring';d.body.appendChild(dot);d.body.appendChild(ring);
+  addEventListener('pointermove',function(e){kx=e.clientX;ky=e.clientY;dot.style.transform='translate('+kx+'px,'+ky+'px) translate(-50%,-50%)';
+    ring.classList.toggle('big',!!(e.target.closest&&e.target.closest('a,button,.card')))});
+  (function f(){rx+=(kx-rx)*.18;ry+=(ky-ry)*.18;ring.style.transform='translate('+rx+'px,'+ry+'px) translate(-50%,-50%)';requestAnimationFrame(f)})();
+  d.querySelectorAll('.btn,.ico').forEach(function(b){
+    b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();b.style.translate=((e.clientX-r.left-r.width/2)*.25)+'px '+((e.clientY-r.top-r.height/2)*.35)+'px'});
+    b.addEventListener('pointerleave',function(){b.style.translate=''})});
+}
+// 11. Bosh qismni bosganda zarrachalar portlaydi
+var B=[];
+if(!rm){hero.addEventListener('click',function(e){if(e.target.closest('a'))return;var r=hero.getBoundingClientRect();
+  for(var i=0;i<26;i++){var a=Math.random()*6.283,s=2+Math.random()*5;B.push({x:e.clientX-r.left,y:e.clientY-r.top,vx:Math.cos(a)*s,vy:Math.sin(a)*s,l:1})}});
+  (function bl(){if(B.length&&vis){cx.fillStyle=getComputedStyle(root).getPropertyValue('--acc').trim();
+    B=B.filter(function(p){return p.l>0});B.forEach(function(p){p.x+=p.vx;p.y+=p.vy;p.vx*=.95;p.vy*=.95;p.l-=.02;cx.globalAlpha=Math.max(p.l,0);cx.beginPath();cx.arc(p.x,p.y,3*p.l+1,0,6.283);cx.fill()})}
+    requestAnimationFrame(bl)})()}
+// 12. Yuguruvchi qator skroll tezligiga javob beradi
+if(!rm){tr.style.animation='none';var mxp=0,ly=scrollY,vel=0,hv=false;
+  tr.parentNode.addEventListener('pointerenter',function(){hv=true});tr.parentNode.addEventListener('pointerleave',function(){hv=false});
+  (function mq(){var dy=scrollY-ly;ly=scrollY;vel+=(dy-vel)*.1;mxp-=(hv?0:1.1)+Math.abs(vel)*.6;var half=tr.scrollWidth/2;if(-mxp>=half)mxp+=half;
+    tr.style.transform='translateX('+mxp+'px) skewX('+Math.max(-12,Math.min(12,-vel*.4))+'deg)';requestAnimationFrame(mq)})()}
+// 13. Kod bloki yozilib chiqadi
+var src='const xayrulla = {\n  ism: "Xayrulla Tojiqulov",\n  yonalish: "Frontend",\n  tillar: ["HTML", "CSS", "JavaScript", "Python", "C++"],\n  asboblar: ["Tailwind CSS", "Git"],\n  loyihalar: ["SmartCart", "TMA", "Tizimix"],\n  ochiq: true, // hamkorlikka tayyor\n};';
+var html=src.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/^(\s+)(\w+):/gm,"$1<span class='p'>$2</span>:").replace(/("[^"]*")/g,"<span class='s'>$1</span>").replace(/\b(const|true)\b/g,"<span class='k'>$1</span>").replace(/(\/\/.*)/g,"<span class='c'>$1</span>");
+var ct=d.getElementById('codetext');
+function typeCode(){var i=0;(function st(){var ch=html[i];if(ch==='<'){i=html.indexOf('>',i)+1}else{i++}
+  ct.innerHTML=html.slice(0,i)+"<span class='caret'></span>";if(i<html.length)setTimeout(st,ch==='\n'?220:28);else ct.innerHTML=html})()}
+if(rm)ct.innerHTML=html;else new IntersectionObserver(function(e,o){if(e[0].isIntersecting){o.disconnect();typeCode()}},{threshold:.4}).observe(d.getElementById('code'));
+})();
+</script>
+</body>
+</html>
